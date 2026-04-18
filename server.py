@@ -17,6 +17,10 @@ def render_index_page() -> str:
 def sent_analyzer() -> str:
     """Analyze user text and return a formatted response."""
     text_to_analyze = request.args.get("textToAnalyze", "")
+
+    if not text_to_analyze.strip():
+        return "Invalid text! Please try again!"
+
     response = emotion_detector(text_to_analyze)
 
     if response["dominant_emotion"] is None:
